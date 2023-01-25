@@ -1,13 +1,14 @@
 'use strict';
-import express from 'express';
 
 
 
+import categories from '../categories';
 
-const nconf = express();
-const _ = require('lodash');
+import _ from 'lodash'
+import nconf from 'ncomf'
 
-const categories = require('../categories');
+
+
 const meta = require('../meta');
 const pagination = require('../pagination');
 const helpers = require('./helpers');
