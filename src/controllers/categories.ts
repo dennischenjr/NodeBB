@@ -1,7 +1,3 @@
-
-
-
-
 import nconf from 'nconf';
 import _ from 'lodash';
 import categories from '../categories';
@@ -15,7 +11,7 @@ import helpers from './helpers';
 import privileges from '../privileges';
 
 
-export default async function categoriesController(req, res) {
+export default async function categoriesController(req: { uid: any; query: { page: string; }; originalUrl: string; }, res: { locals: { metaTags: ({ name: string; content: string; property?: undefined; } | { property: string; content: string; name?: undefined; })[]; }; render: (arg0: string, arg1: { title: any; selectCategoryLabel: string; categories: any; pagination: any; breadcrumbs: string; }) => void; }) {
     res.locals.metaTags = [{
         name: 'title',
         content: String(meta.config.title || 'NodeBB'),
@@ -27,7 +23,7 @@ export default async function categoriesController(req, res) {
     const allRootCids = await categories.getAllCidsFromSet('cid:0:children');
     const rootCids = await privileges.categories.filterCids('find', allRootCids, req.uid);
     const pageCount:number = Math.max(1, Math.ceil(rootCids.length / meta.config.categoriesPerPage)) as number;
-    const page:number = Math.min(parseInt(req.query.page, 10) || 1, pageCount) as number;
+    const page:string = Math.min(parseInt(req.query.page, 10) || 1, pageCount) as unknown as string;
     const start: number = Math.max(0, (page - 1) * meta.config.categoriesPerPage) as number;
     const stop: number = start + meta.config.categoriesPerPage - 1 as number;
     const pageCids = rootCids.slice(start, stop + 1);
