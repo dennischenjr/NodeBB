@@ -6,13 +6,12 @@ import categories from '../categories';
 
 import _ from 'lodash'
 import nconf from 'ncomf'
+import meta from '../meta'
+import pagination from '../pagination
+import helpers from './helpers'
+import privileges from '../privileges'
 
 
-
-const meta = require('../meta');
-const pagination = require('../pagination');
-const helpers = require('./helpers');
-const privileges = require('../privileges');
 
 const categoriesController = module.exports;
 
