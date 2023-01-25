@@ -1,16 +1,16 @@
 'use strict';
 
-
+import nconf from 'nconf';
 
 import categories from '../categories';
 
-import _ from 'lodash'
+import _ from 'lodash';
 
-import nconf from 'nconf'
-import meta from '../meta'
-import pagination from '../pagination'
-import helpers from './helpers'
-import privileges from '../privileges'
+
+import meta from '../meta';
+import pagination from '../pagination';
+import helpers from './helpers';
+import privileges from '../privileges';
 
 
 
