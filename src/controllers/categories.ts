@@ -1,6 +1,10 @@
 'use strict';
+import express from 'express';
 
-const nconf = require('nconf');
+
+
+
+const nconf = express();
 const _ = require('lodash');
 
 const categories = require('../categories');
@@ -11,7 +15,7 @@ const privileges = require('../privileges');
 
 const categoriesController = module.exports;
 
-categoriesController.list = async function (req, res) {
+categoriesController.list = async function (req:any, res:any) {
     res.locals.metaTags = [{
         name: 'title',
         content: String(meta.config.title || 'NodeBB'),
@@ -39,9 +43,10 @@ categoriesController.list = async function (req, res) {
         selectCategoryLabel: '[[pages:categories]]',
         categories: tree,
         pagination: pagination.create(page, pageCount, req.query),
+        breadcrumbs:'[{ text: data.title }]'
     };
 
-    data.categories.forEach((category) => {
+    data.categories.forEach((category:any) => {
         if (category) {
             helpers.trimChildren(category);
             helpers.setCategoryTeaser(category);
