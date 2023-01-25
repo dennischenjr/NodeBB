@@ -16,9 +16,9 @@ import privileges from '../privileges';
 
 
 
-const categoriesController = module.exports;
+//const categoriesController = module.exports;
 
-categoriesController.list = async function (req:any, res:any) {
+export async function categoriesController(req:any, res:any) {
     res.locals.metaTags = [{
         name: 'title',
         content: String(meta.config.title || 'NodeBB'),
