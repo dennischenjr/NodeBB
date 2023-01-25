@@ -1,17 +1,13 @@
 import nconf from 'nconf';
 import _ from 'lodash';
 import categories from '../categories';
-
-
-
-
 import meta from '../meta';
 import pagination from '../pagination';
 import helpers from './helpers';
 import privileges from '../privileges';
 
 
-export default async function categoriesController(req: { uid: any; query: { page: string; }; originalUrl: string; }, res: { locals: { metaTags: ({ name: string; content: string; property?: undefined; } | { property: string; content: string; name?: undefined; })[]; }; render: (arg0: string, arg1: { title: any; selectCategoryLabel: string; categories: any; pagination: any; breadcrumbs: string; }) => void; }) {
+export default async function categoriesController(req, res) {
     res.locals.metaTags = [{
         name: 'title',
         content: String(meta.config.title || 'NodeBB'),
