@@ -18,13 +18,13 @@ import privileges from '../privileges';
 export default async function categoriesController(req, res:string) {
     res.locals.metaTags = [{
         name: 'title',
-        content: String(meta.config.title:string || 'NodeBB'),
+        content: String(meta.config.title || 'NodeBB'),
     }, {
         property: 'og:type',
         content: 'website',
     }];
 
-    const allRootCids = await categories.getAllCidsFromSet('cid:0:children') as string;
+    const allRootCids = await categories.getAllCidsFromSet('cid:0:children');
     const rootCids = await privileges.categories.filterCids('find', allRootCids, req.uid);
     const pageCount = Math.max(1, Math.ceil(rootCids.length / meta.config.categoriesPerPage));
     const page = Math.min(parseInt(req.query.page, 10) || 1, pageCount);
