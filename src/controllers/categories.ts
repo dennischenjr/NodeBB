@@ -18,7 +18,7 @@ export default async function categoriesController(req, res) {
 
     const allRootCids = await categories.getAllCidsFromSet('cid:0:children');
     const rootCids = await privileges.categories.filterCids('find', allRootCids, req.uid);
-    const pageCount:number = Math.max(1, Math.ceil(rootCids.length / meta.config.categoriesPerPage)) as number;
+    const pageCount:number = Math.max(1, Math.ceil(rootCids.length as number / meta.config.categoriesPerPage as number));
     const page = Math.min(parseInt(req.query.page, 10) || 1, pageCount) ;
     const start= Math.max(0, (page - 1) * meta.config.categoriesPerPage);
     const stop: number = start + meta.config.categoriesPerPage - 1 as number;
