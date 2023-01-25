@@ -1,10 +1,12 @@
-'use strict';
+
+
+
 
 import nconf from 'nconf';
-
+import _ from 'lodash';
 import categories from '../categories';
 
-import _ from 'lodash';
+
 
 
 import meta from '../meta';
@@ -13,7 +15,7 @@ import helpers from './helpers';
 import privileges from '../privileges';
 
 
-
+export default categoriesController
 const categoriesController = module.exports;
 
 categoriesController.list = async function (req:any, res:any) {
