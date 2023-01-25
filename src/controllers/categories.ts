@@ -15,8 +15,8 @@ import helpers from './helpers';
 import privileges from '../privileges';
 
 
-export default categoriesController;
 
+const categoriesController = module.exports;
 
 categoriesController.list = async function (req:any, res:any) {
     res.locals.metaTags = [{
