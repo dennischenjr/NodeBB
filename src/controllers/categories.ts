@@ -15,7 +15,7 @@ import helpers from './helpers';
 import privileges from '../privileges';
 
 
-export default async function categoriesController(req, res:string) {
+export default async function categoriesController(req, res) {
     res.locals.metaTags = [{
         name: 'title',
         content: String(meta.config.title || 'NodeBB'),
@@ -26,10 +26,10 @@ export default async function categoriesController(req, res:string) {
 
     const allRootCids = await categories.getAllCidsFromSet('cid:0:children');
     const rootCids = await privileges.categories.filterCids('find', allRootCids, req.uid);
-    const pageCount = Math.max(1, Math.ceil(rootCids.length / meta.config.categoriesPerPage));
-    const page = Math.min(parseInt(req.query.page, 10) || 1, pageCount);
-    const start = Math.max(0, (page - 1) * meta.config.categoriesPerPage);
-    const stop = start + meta.config.categoriesPerPage - 1;
+    const pageCount:number = Math.max(1, Math.ceil(rootCids.length / meta.config.categoriesPerPage)) as number;
+    const page:number = Math.min(parseInt(req.query.page, 10) || 1, pageCount) as number;
+    const start: number = Math.max(0, (page - 1) * meta.config.categoriesPerPage) as number;
+    const stop: number = start + meta.config.categoriesPerPage - 1 as number;
     const pageCids = rootCids.slice(start, stop + 1);
 
     const allChildCids = _.flatten(await Promise.all(pageCids.map(categories.getChildrenCids)));
